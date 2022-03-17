@@ -1,10 +1,13 @@
 import React from "react";
 import CerrarBtn from "../img/cerrar.svg";
 
-const Modal = ({ setShowModal }) => {
+const Modal = ({ setShowModal, modalAnimation, setModalAnimation }) => {
   const ocultarModal = () => {
     {
-      setShowModal(false);
+      setModalAnimation(false);
+      setTimeout(() => {
+        setShowModal(false);
+      }, 500);
     }
   };
 
@@ -13,6 +16,9 @@ const Modal = ({ setShowModal }) => {
       <div className="cerrar-modal">
         <img src={CerrarBtn} alt="cerrar modal" onClick={ocultarModal} />
       </div>
+      <form className={`formulario ${modalAnimation ? "animar" : "cerrar"}`}>
+        <legend>Nuevo Gasto</legend>
+      </form>
     </div>
   );
 };
