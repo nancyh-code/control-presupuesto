@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Header from "./components/Header";
+import Modal from "./components/Modal";
 import IconoNuevoGasto from "./img/nuevo-gasto.svg";
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
           />
         </div>
       )}
-      {showModal && <p>Desde modal</p>}
+      {showModal && <Modal setShowModal={setShowModal} />}
     </div>
   );
 }
