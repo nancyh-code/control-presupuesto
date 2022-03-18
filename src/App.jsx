@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { idGenerate } from "./helpers";
+import { idGenerate } from "./helpers/index";
 import Header from "./components/Header";
 import Modal from "./components/Modal";
 import IconoNuevoGasto from "./img/nuevo-gasto.svg";
@@ -21,6 +21,11 @@ function App() {
   const guardarGasto = (gasto) => {
     gasto.id = idGenerate();
     setGastos([...gastos, gasto]);
+
+    setModalAnimation(false);
+    setTimeout(() => {
+      setShowModal(false);
+    }, 500);
   };
 
   return (
