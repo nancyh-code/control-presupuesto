@@ -3,6 +3,7 @@ import { idGenerate } from "./helpers/index";
 import Header from "./components/Header";
 import Modal from "./components/Modal";
 import IconoNuevoGasto from "./img/nuevo-gasto.svg";
+import ListadoGastos from "./components/ListadoGastos";
 
 function App() {
   const [presupuesto, setPresupuesto] = useState("");
@@ -37,13 +38,18 @@ function App() {
         setIsValidPresupuesto={setIsValidPresupuesto}
       />
       {isValidPresupuesto && (
-        <div className="nuevo-gasto">
-          <img
-            src={IconoNuevoGasto}
-            alt="icono nuevo gasto"
-            onClick={handleNuevoGasto}
-          />
-        </div>
+        <>
+          <main>
+            <ListadoGastos gastos={gastos} />
+          </main>
+          <div className="nuevo-gasto">
+            <img
+              src={IconoNuevoGasto}
+              alt="icono nuevo gasto"
+              onClick={handleNuevoGasto}
+            />
+          </div>
+        </>
       )}
       {showModal && (
         <Modal
