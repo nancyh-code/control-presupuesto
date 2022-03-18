@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { quantityFormatting } from "../helpers";
 
 const ControlPresupuesto = ({ presupuesto, gastos }) => {
   const [totalDisponible, setTotalDisponible] = useState(0);
@@ -14,12 +15,12 @@ const ControlPresupuesto = ({ presupuesto, gastos }) => {
     setTotalDisponible(valorTotalDisponible);
   }, [gastos]);
 
-  const formatearCantidad = (cantidad) => {
-    return cantidad.toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-    });
-  };
+  // const formatearCantidad = (cantidad) => {
+  //   return cantidad.toLocaleString("en-US", {
+  //     style: "currency",
+  //     currency: "USD",
+  //   });
+  // };
 
   return (
     <div className="contenedor-presupuesto contenedor sombra dos-columnas">
@@ -28,13 +29,13 @@ const ControlPresupuesto = ({ presupuesto, gastos }) => {
       </div>
       <div className="contenido-presupuesto">
         <p>
-          <span>Presupuesto: </span> {formatearCantidad(presupuesto)}
+          <span>Presupuesto: </span> {quantityFormatting(presupuesto)}
         </p>
         <p>
-          <span>Disponible: </span> {formatearCantidad(totalDisponible)}
+          <span>Disponible: </span> {quantityFormatting(totalDisponible)}
         </p>
         <p>
-          <span>Gastado: </span> {formatearCantidad(totalGastado)}
+          <span>Gastado: </span> {quantityFormatting(totalGastado)}
         </p>
       </div>
     </div>
