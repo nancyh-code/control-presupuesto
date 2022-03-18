@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { idGenerate } from "./helpers";
 import Header from "./components/Header";
 import Modal from "./components/Modal";
 import IconoNuevoGasto from "./img/nuevo-gasto.svg";
@@ -18,6 +19,7 @@ function App() {
   };
 
   const guardarGasto = (gasto) => {
+    gasto.id = idGenerate();
     setGastos([...gastos, gasto]);
   };
 
