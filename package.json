@@ -13,6 +13,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^1.0.7",
+    "prop-types": "^15.8.1",
+    "react-swipeable-list": "^1.5.1",
     "vite": "^2.8.0"
   }
 }
