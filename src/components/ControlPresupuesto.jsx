@@ -25,7 +25,7 @@ const ControlPresupuesto = ({ presupuesto, gastos }) => {
     setTotalDisponible(valorTotalDisponible);
     setTimeout(() => {
       setPorcentaje(nuevoPorcentaje);
-    }, 1500);
+    }, 1000);
   }, [gastos]);
 
   // const formatearCantidad = (cantidad) => {
@@ -43,7 +43,9 @@ const ControlPresupuesto = ({ presupuesto, gastos }) => {
           styles={buildStyles({
             pathColor: "#2d99c8",
             trailColor: "#f5f5f5",
+            textColor: "#2d99c8",
           })}
+          text={`${porcentaje}% gastado`}
         />
       </div>
       <div className="contenido-presupuesto">
