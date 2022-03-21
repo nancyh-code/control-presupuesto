@@ -4,7 +4,13 @@ import { quantityFormatting } from "../helpers";
 
 import "react-circular-progressbar/dist/styles.css";
 
-const ControlPresupuesto = ({ presupuesto, gastos }) => {
+const ControlPresupuesto = ({
+  presupuesto,
+  setPresupuesto,
+  gastos,
+  setGastos,
+  setIsValidPresupuesto,
+}) => {
   const [totalDisponible, setTotalDisponible] = useState(0);
   const [totalGastado, setTotalGastado] = useState(0);
   const [porcentaje, setPorcentaje] = useState(0);
@@ -28,12 +34,14 @@ const ControlPresupuesto = ({ presupuesto, gastos }) => {
     }, 1000);
   }, [gastos]);
 
-  // const formatearCantidad = (cantidad) => {
-  //   return cantidad.toLocaleString("en-US", {
-  //     style: "currency",
-  //     currency: "USD",
-  //   });
-  // };
+  const handleResetApp = () => {
+    const resultado = confirm("¿Deseas reiniciar presupuesto y gastos?");
+    if (resultado) {
+      setGastos([]);
+      setPresupuesto(0);
+      setIsValidPresupuesto(false);
+    }
+  };
 
   return (
     <div className="contenedor-presupuesto contenedor sombra dos-columnas">
@@ -49,6 +57,9 @@ const ControlPresupuesto = ({ presupuesto, gastos }) => {
         />
       </div>
       <div className="contenido-presupuesto">
+        <button className="reset-app" type="button" onClick={handleResetApp}>
+          Resetear Gastos y presupuesto
+        </button>
         <p>
           <span>Presupuesto: </span> {quantityFormatting(presupuesto)}
         </p>
