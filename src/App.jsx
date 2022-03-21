@@ -6,11 +6,17 @@ import IconoNuevoGasto from "./img/nuevo-gasto.svg";
 import ListadoGastos from "./components/ListadoGastos";
 
 function App() {
-  const [presupuesto, setPresupuesto] = useState("");
+  const [presupuesto, setPresupuesto] = useState(
+    Number(localStorage.getItem("presupuesto")) ?? 0
+  );
   const [isValidPresupuesto, setIsValidPresupuesto] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalAnimation, setModalAnimation] = useState(false);
-  const [gastos, setGastos] = useState([]);
+  const [gastos, setGastos] = useState(
+    localStorage.getItem("gastos")
+      ? JSON.parse(localStorage.getItem("gastos"))
+      : []
+  );
   const [gastosEditar, setGastosEditar] = useState({});
 
   useEffect(() => {
@@ -21,6 +27,24 @@ function App() {
       }, 500);
     }
   }, [gastosEditar]);
+
+  useEffect(() => {
+    localStorage.setItem("presupuesto", presupuesto ?? 0);
+
+    localStorage.setItem("gastos", JSON.stringify(gastos) ?? []);
+  }, [presupuesto, gastos]);
+
+  useEffect(() => {
+    const presupuestoLS = Number(localStorage.getItem("presupuesto")) ?? 0;
+    // const gastosLS = localStorage.getItem(
+    //   "gastos",
+    //   JSON.stringify(gastos) ?? []
+    // );
+    if (presupuestoLS > 0) {
+      setIsValidPresupuesto(true);
+    }
+    console.log(presupuestoLS);
+  }, []);
 
   const handleNuevoGasto = () => {
     setShowModal(true);
